@@ -11,7 +11,7 @@ export class BookRouter {
 
   public routes(app): void {
     const csrfProtection = csurf({ cookie: true });
-    app.get("/courses", csrfProtection, (req, res) => {
+    app.get("/books", csrfProtection, (req, res) => {
       this.bookController
         .getBooks()
         .then((data: any) => {
