@@ -3,14 +3,11 @@ import * as csurf from "csurf";
 import { STATUS } from "../config/status";
 
 export class BookRouter {
-  private bookController: BookController;
-
-  constructor() {
-    this.bookController = new BookController();
-  }
+  constructor(private bookController: BookController) {}
 
   public routes(app): void {
     const csrfProtection = csurf({ cookie: true });
+
     app.get("/books", csrfProtection, (req, res) => {
       this.bookController
         .getBooks()
