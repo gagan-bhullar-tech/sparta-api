@@ -1,8 +1,8 @@
-import { CourseController } from "../controllers/course";
+import { CourseController } from "../controllers/CourseController";
 import * as csurf from 'csurf';
 import { STATUS } from "../config/status";
 
-export class CourseRoutes {
+export class CourseRouter {
     private courseController: CourseController;
 
     constructor() {

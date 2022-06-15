@@ -1,12 +1,8 @@
-import { CourseModel } from "../models/course";
+import { CourseModel } from "../models/Course";
 import { STATUS } from "../config/status";
 import { MESSAGES } from "../config/messages";
 
 export class CourseController {
-    constructor() {
-
-    }
-
     public getCourses() {
         return new Promise(async (resolve, reject) => {
             try {
