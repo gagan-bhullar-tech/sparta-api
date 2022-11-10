@@ -9,22 +9,27 @@ import * as passport from 'passport';
 import * as path from 'path';
 import { Config } from './config/config';
 import { BookController } from './controllers/BookController';
+import { CapitalController } from './controllers/CapitalController';
 import { CourseController } from './controllers/CourseController';
 import { BookRouter } from './routes/BookRouter';
+import { CapitalRouter } from './routes/CapitalRouter';
 import { CourseRouter } from './routes/CourseRouter';
 
 class App {
   public app: express.Application;
   public router: express.Router;
+  private capitalController: CapitalController;
   private courseController: CourseController;
   private bookController: BookController;
   private courseRouter: CourseRouter;
+  private capitalRouter: CapitalRouter;
   private bookRouter: BookRouter;
 
   constructor() {
     this.app = express();
     this.router = express.Router();
     this.config();
+    this.capitalRouter.routes(this.router);
     this.courseRouter.routes(this.router);
     this.bookRouter.routes(this.router);
     this.app.use("/v1", this.router);
@@ -57,11 +62,13 @@ class App {
   }
 
   private configControllers() {
+    this.capitalController = new CapitalController();
     this.courseController = new CourseController();
     this.bookController = new BookController();
   }
 
   private configRouters() {
+    this.capitalRouter = new CapitalRouter(this.capitalController);
     this.courseRouter = new CourseRouter(this.courseController);
     this.bookRouter = new BookRouter(this.bookController);
   }
